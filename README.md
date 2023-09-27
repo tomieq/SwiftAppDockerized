@@ -32,7 +32,7 @@ CMD ["./SwiftApp"]
 ```
 ### Running 
 ```
-docker run --rm -it --name swift_app_1 tomieq/swift_app:1.0
+docker run --rm -it --name swift_app_1 --env URL=traffic.com/open-telemetry tomieq/swift_app:1.0
 ```
 Our sample app will output:
 ```
@@ -63,4 +63,5 @@ invoke ➡️   ldd /app/SwiftApp
     libswift_RegexParser.so => /usr/lib/swift/linux/libswift_RegexParser.so (0x00007f539164a000)
     libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f539141e000)
     /lib64/ld-linux-x86-64.so.2 (0x00007f5394b38000)
+Enviromental variale URL: traffic.com/open-telemetry
 ```
