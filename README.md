@@ -7,28 +7,34 @@ Skeleton Swift app showing how to pack it into Docker container
 ```
 docker build -t tomieq/swift_app:1.0 .
 ``` 
+On raspberry:
+```
+docker build -t tomieq/swift_app:1.0 -f Dockerfile.rpi4 .
+```
 tag name might have only lower case letters
 
 
 If there is some issue with `swift build` folder, start with: `docker build --progress plain  .`
-Adding `RUN echo $(ls -la .build | grep linux)` to Dokerfile
+Adding `RUN echo $(ls -laR .build)` to Dokerfile
 
 ### Dockerfile
 ```
-FROM swift:5.7 as builder
+FROM swift:5.9 as builder
 WORKDIR /app
 COPY . .
-RUN swift build -c release 
-RUN echo $(ls -la .build | grep linux)
+RUN swift build -c release
+# aarch64-unknown-linux-gnu for raspberry pi
+# x86_64-unknown-linux-gnu for intel based architectures
+RUN mkdir output
+RUN cp -R $(swift build --show-bin-path -c release)/SwiftApp output/App
 
-
-FROM swift:5.7-slim
+FROM swift:5.9-slim
 RUN apt-get update -y
 RUN apt-get install -y file
 WORKDIR /app
-COPY --from=builder /app/.build/x86_64-unknown-linux-gnu/release/SwiftApp .
+COPY --from=builder /app/output/App .
 COPY Resources /app/Resources
-CMD ["./SwiftApp"]
+CMD ["./App"]
 ```
 ### Running 
 ```

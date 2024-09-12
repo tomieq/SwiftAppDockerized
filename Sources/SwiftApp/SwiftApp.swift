@@ -8,8 +8,8 @@ public struct SwiftApp {
         print("workingDir: \(workingDir)")
         print(FileTree(workingDir).tree)
         let shell = Shell()
-        print(shell.exec("file \(workingDir)/SwiftApp"))
-        print(shell.exec("ldd \(workingDir)/SwiftApp"))
+        print(shell.exec("file \(workingDir)/App"))
+        print(shell.exec("ldd \(workingDir)/App"))
         
         if let url = ProcessInfo.processInfo.environment["URL"] {
             print("Enviromental variale URL: \(url)")
