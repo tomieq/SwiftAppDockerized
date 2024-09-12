@@ -7,10 +7,6 @@ Skeleton Swift app showing how to pack it into Docker container
 ```
 docker build -t tomieq/swift_app:1.0 .
 ``` 
-On raspberry:
-```
-docker build -t tomieq/swift_app:1.0 -f Dockerfile.rpi4 .
-```
 tag name might have only lower case letters
 
 
