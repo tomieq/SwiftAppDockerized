@@ -5,7 +5,8 @@ RUN swift build -c release
 # aarch64-unknown-linux-gnu for raspberry pi
 # x86_64-unknown-linux-gnu for intel based architectures
 RUN mkdir output
-RUN cp -R $(swift build --show-bin-path -c release)/SwiftApp output/App
+RUN cp $(swift build --show-bin-path -c release)/SwiftApp output/App
+RUN strip -s output/App
 
 FROM swift:5.9-slim
 RUN apt-get update -y
