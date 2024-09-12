@@ -2,8 +2,8 @@ name: very-first-workflow
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  sample-jpb:
+  sample-job:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: ls -laR
+      - run: docker build -t tomieq/swift_app:1.0 .
