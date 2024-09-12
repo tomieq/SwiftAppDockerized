@@ -1,10 +1,9 @@
 name: very-first-workflow-on-mac
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: ${{ github.actor }} is learning GitHub Actions on Mac VM
 on: [push]
 jobs:
   sample-job:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
-      - run: docker build -t tomieq/swift_app:1.0 .
-      - run: docker run --rm --name swift_app_1 --env URL=traffic.com/open-telemetry tomieq/swift_app:1.0
+      - run: swift --version
