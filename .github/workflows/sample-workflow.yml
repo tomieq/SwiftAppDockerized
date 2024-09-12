@@ -7,3 +7,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: docker build -t tomieq/swift_app:1.0 .
+      - run: docker run --rm -it --name swift_app_1 --env URL=traffic.com/open-telemetry tomieq/swift_app:1.0
