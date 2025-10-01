@@ -14,7 +14,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .executableTarget(
             name: "SwiftApp",
-            dependencies: []),
+            dependencies: [],
+            swiftSettings: [
+                .define("LINUX", .when(platforms: [.linux])),
+                .define("MACOS", .when(platforms: [.macOS]))
+            ]),
         .testTarget(
             name: "SwiftAppTests",
             dependencies: ["SwiftApp"]),

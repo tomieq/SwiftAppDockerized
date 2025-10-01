@@ -1,4 +1,8 @@
 import Foundation
+// force print function to flush without buffering (Docker Logs latching fix)
+#if LINUX
+setbuf(stdout, nil)
+#endif
 
 @main
 public struct SwiftApp {
