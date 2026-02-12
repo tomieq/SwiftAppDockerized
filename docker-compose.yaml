@@ -1,0 +1,19 @@
+networks:
+  home-network:
+    name: home-network
+
+services:
+
+  app:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    container_name: app
+    hostname: app
+    restart: always
+    environment:
+      - URL=traffic.com/open-telemetry
+    networks:
+      - home-network
+

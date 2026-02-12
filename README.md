@@ -67,3 +67,22 @@ invoke ➡️   ldd /app/SwiftApp
     /lib64/ld-linux-x86-64.so.2 (0x00007f5394b38000)
 Enviromental variale URL: traffic.com/open-telemetry
 ```
+
+# print in Docker app
+```swift
+import Foundation
+// force print function to flush without buffering (Docker Logs latching fix)
+#if LINUX
+setvbuf(stdout, nil, _IONBF, 0)
+#endif
+```
+
+# docker-compose
+Just run:
+```bash
+docker-compose up --build
+```
+Force rebuild:
+```bash
+docker-compose up --build
+```
